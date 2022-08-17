@@ -1,0 +1,110 @@
+package DemoPackage;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.decorators.WebDriverDecorator;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+//import org.junit.Test;
+//import Helper.CommonMethod;
+import Program.base;
+
+
+
+	public class Login extends base  {
+		static Logger logger= Logger.getLogger(Login.class.getName());
+		public WebDriver driver;
+			
+	@BeforeTest
+	public void initialize() throws IOException {
+		driver=InitlializeDriver1();
+	    driver.manage().window().maximize();
+	    driver.manage().deleteAllCookies();
+	}
+	@Test
+	  public void login() throws InterruptedException, IOException  {
+		//created the base class and call the method here
+		    JavascriptExecutor js = (JavascriptExecutor) driver;
+			driver.get("https://www.shop-apotheke.com/nx/login/");
+			//creating the object of the class to invoke the method
+			Thread.sleep(5000);
+			//check on the number of frame in given page
+		    JavascriptExecutor exe = (JavascriptExecutor) driver;
+			Integer noOfFrames = Integer.parseInt(exe.executeScript("return window.length").toString());
+			Integer numberOfFrames = 0;
+			System.out.println("No. of iframes on the page are " + numberOfFrames);
+			String Str= "return document.querySelector('#usercentrics-root').shadowRoot.querySelector('#focus-lock-id > div > div > div.sc-bYoBSM.hrDdPG > div > div > div.sc-dlVxhl.bEDIID > div > button.sc-gsDKAQ.dZIwB')";
+			//WebElement title= (WebElement)  driver.executeScript(Str);
+			WebElement title= (WebElement) js.executeScript(Str);
+			title.click();
+			Thread.sleep(3000);
+			//translate into english language
+			/*WebElement websitePage= driver.findElement(By.xpath("//*[@id='layout']"));
+			try {
+			Actions action = new Actions(driver);
+			action.moveToElement(websitePage);
+			action.contextClick().sendKeys(Keys.DOWN).perform();
+			Thread.sleep(3000);
+			}
+			catch(Exception e) {
+				System.out.println(e);
+			}*/
+			
+		    logger.info("registering for free/create user account for free");
+			driver.findElement(By.xpath("//*[@class='u-margin--bottom o-RegistrationBox__button-wrapper']")).click();
+			Thread.sleep(2000);
+			WebElement statutaionRadioButton=driver.findElement(By.xpath("(//*[@class='l-flex a-list-reset'])/li[1]"));//click on radio button
+			statutaionRadioButton.click();
+			WebElement Name=driver.findElement(By.xpath("//*[@id='firstName']"));//name
+			Name.sendKeys("Ankita");
+			//WebElement LastName=driver.findElement(By.xpath("//*[@id='lastName']"));//last name
+			//LastName.sendKeys("Bhardwaj");
+			//WebElement emailAddress=driver.findElement(By.xpath("//*[@id='registerForm-eMail']"));// email address
+			//emailAddress.sendKeys("ankitarattan@yahoo.com");
+			
+			//js.executeScript("scroll(0,250)");
+			//WebElement password=driver.findElement(By.xpath("//*[id='registerForm-password']"));//password
+			//password.sendKeys("Welcome@2022");
+			Thread.sleep(2000);
+			WebElement datedropdwon=driver.findElement(By.xpath("(//*[@class='m-Select__arrow u-transform-center--y'])[2]"));
+			datedropdwon.click();
+			Thread.sleep(2000);
+			js.executeScript("scroll(0,450)");
+			Thread.sleep(2000);
+			 String setDate=driver.findElement(By.xpath("//*[@class='m-Select__list']")).getText();//set date birth
+			//setDate.getText();
+			 System.out.println(setDate);
+			/*driver.findElement(By.xpath(""));//set date month
+			driver.findElement(By.xpath(""));//set date year
+			driver.findElement(By.xpath(""));//click on first checkbox
+			driver.findElement(By.xpath(""));//click on second checkbox
+			driver.findElement(By.xpath(""));//create a user account*/
+			
+			
+			
+			//CommonMethod commonmethod= new CommonMethod(driver);
+			//commonmethod.lookForCareersAndQAJob().click();
+			//commonmethod.validation();
+			//commonmethod.applyNow();
+		}
+
+	
+	@AfterTest
+	public void close() {
+		//driver.quit();
+	  }
+
+}	
+	
+

@@ -1,0 +1,75 @@
+package DemoPackage;
+
+import java.io.IOException;
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+//import org.junit.Test;
+//import Helper.CommonMethod;
+import Program.base;
+
+
+
+	public class Login extends base  {
+		static Logger logger= Logger.getLogger(Login.class.getName());
+		public WebDriver driver;
+			
+	@BeforeTest
+	public void initialize() throws IOException {
+		driver=InitlializeDriver1();
+	    driver.manage().window().maximize();
+	}
+	@Test
+	  public void login() throws InterruptedException, IOException  {
+		//created the base class and call the method here
+		    JavascriptExecutor js = (JavascriptExecutor) driver;
+			driver.get("https://www.shop-apotheke.com/nx/login/");
+			//creating the object of the class to invoke the method
+			Thread.sleep(3000);
+			//driver.switchTo().frame(-1);
+			//List<WebElement> cookiesButton= driver.findElements(By.xpath("(//*[@data-testid=sc-kfPuZi jrHFVa'])"));
+			//((WebElement) cookiesButton).getText();
+			//Thread.sleep(5000);
+			//logger.info("registering for free/create user account for free");
+			//chrome://settings/clearBrowserData
+			//driver.findElement(By.xpath("//*[@class='u-margin--bottom o-RegistrationBox__button-wrapper']")).click();
+			JavascriptExecutor exe = (JavascriptExecutor) driver;
+			Integer noOfFrames = Integer.parseInt(exe.executeScript("return window.length").toString());
+			Integer numberOfFrames = 0;
+			System.out.println("No. of iframes on the page are " + numberOfFrames);
+			
+			//driver.switchTo().frame(iframe[2]);
+			driver.getWindowHandle();
+			//driver.switchTo().alert().accept();
+			Thread.sleep(7000);
+			String displayText=driver.findElement(By.cssSelector("button.sc-gsDKAQ:nth-child(2)")).getText();
+			System.out.println(displayText);
+			//move to other frame
+			//driver.findElement(By.xpath("//*[@class='sc-gsDKAQ dZIwB']")).click();
+			
+			
+			//EC.driver.findElement(By.xpath("//*[@class="uc-accept-all-button"]")).click();
+
+			//driver.findElement(By.xpath(null))
+			//driver.findElement(By.xpath("(//*[@type='button'])[1]")).click();
+			//CommonMethod commonmethod= new CommonMethod(driver);
+			//commonmethod.lookForCareersAndQAJob().click();
+			//commonmethod.validation();
+			//commonmethod.applyNow();
+		}
+
+	@AfterTest
+	public void close() {
+		//driver.quit();
+	  }
+
+}	
+	
+

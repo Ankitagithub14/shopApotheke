@@ -1,0 +1,147 @@
+package Helper;
+
+import static org.testng.Assert.assertTrue;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
+
+import DemoPackage.Login;
+
+public class CommonMethod {
+
+	public WebDriver driver;
+	// public JavascriptExecutor js = (JavascriptExecutor) driver;
+	static Logger logger = Logger.getLogger(CommonMethod.class.getName());
+
+	By careerpagelink = By.xpath(("//*[@data-analytics-ga-attribute='careers'])[2]"));
+	By careerlink = By.xpath("(//*[@data-analytics-ga-attribute='careers'])[2]");
+	By qajob = By.xpath("//*[@href='/en/corporate/jobs/']");
+	By qapost = By.xpath("//*[@id='engineering']/div/ul/li[2]/a");
+	By role = By.xpath("//*[@itemprop=\"description\"]//div[3]");
+	By responsibilitiestag = By.xpath("(//*[@itemprop='responsibilities'])//h2");
+	By responsibilitieslist = By.xpath("(//*[@itemprop=\"responsibilities\"]//ul)/li");
+	By profiletag = By.xpath("(//*[@itemprop='experienceRequirements'])//h2");
+	By profilelist = By.xpath("(//*[@itemprop='experienceRequirements']//ul)/li");
+	By applynow = By
+			.xpath("//*[@href=\"https://jobs.lever.co/freeletics/5e25d867-b427-4e54-9ee1-c8318d6be1a1/apply\"]");
+	By formpage = By.xpath("((//*[@class='content'])//h4)[1]");
+
+	public CommonMethod(WebDriver driver) {
+		
+		this.driver = driver;
+	}
+	
+	public void validUser() {
+	
+		
+		
+	}
+	
+	public void invalidUser() {
+		
+	}
+	
+	public void validUserResponse() {
+		
+	}
+	
+	public void invalidUserResponse() {
+		
+	}
+
+	/*public WebElement lookForCareersAndQAJob() throws InterruptedException {
+		// looking for careers in the footer of the page
+		Thread.sleep(2000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,8000)");
+		Thread.sleep(1000);
+
+		driver.findElement(careerlink).click();
+		logger.info("*************checklink*****" + driver.findElement(careerlink).isEnabled());
+		
+		return selectForQA();
+	}
+
+	public WebElement selectForQA() throws InterruptedException {
+		Thread.sleep(5000);
+		driver.findElement(qajob).click();
+		Assert.assertEquals(driver.findElement(qapost).getText(), "QA Engineer (all genders) - Remote or Munich");
+		Thread.sleep(2000);
+		return driver.findElement(qapost);
+		
+    }
+
+	public void validation() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)");
+		Thread.sleep(3000);
+		roleDesc();
+		responsiDetail();
+		profileDetail();
+	}
+
+	public void roleDesc() {
+		// assert need to add
+		logger.info(driver.findElement(role).getText());
+	}
+
+	public void responsiDetail() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,500)");
+		Assert.assertEquals(driver.findElement(responsibilitiestag).getText(), "Your Responsibilities");
+		Thread.sleep(1000);
+		List<WebElement> resp = driver.findElements(responsibilitieslist);
+		// System.out.println(resp.size());
+		for (int i = 0; i <= resp.size() - 1; i++) {
+			String respText = resp.get(i).getText();
+        logger.info("the given text in Responsibilities is========> " + respText);
+			if (i == 7) {
+		logger.info("count is good");
+				
+			}
+		}
+	}
+
+	public void profileDetail() throws InterruptedException {
+
+		Thread.sleep(1000);
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,300)");
+		Assert.assertEquals(driver.findElement(profiletag).getText(), "Your Profile");
+		Thread.sleep(1000);
+		List<WebElement> profile = driver.findElements(profilelist);
+		for (int i = 0; i <= profile.size() - 1; i++) {
+			String profileText = profile.get(i).getText();
+			logger.info("the given text in profile is========> " + profileText);
+			if (i == 6) {
+				logger.info("count is good");
+			}
+		}
+
+	}
+
+	public void applyNow() throws InterruptedException {
+		JavascriptExecutor js = (JavascriptExecutor) driver;
+		js.executeScript("window.scrollBy(0,600)");
+		driver.findElement(applynow).click();
+		Thread.sleep(2000);
+		List<String> browserTabs = new ArrayList<String>(driver.getWindowHandles());
+		logger.info("****browsertab****"+(browserTabs.size()));
+		// switch to new tab
+		driver.switchTo().window(browserTabs.get(1));
+		Thread.sleep(1000);
+		Assert.assertEquals(driver.findElement(formpage).getText(), "SUBMIT YOUR APPLICATION");
+		// driver.switchTo().window(browserTabs.get(0));
+
+	}*/
+
+}

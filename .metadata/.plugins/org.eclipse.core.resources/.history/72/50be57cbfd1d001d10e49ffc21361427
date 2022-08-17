@@ -1,0 +1,184 @@
+/*package DemoPackage;
+
+import java.awt.Window;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Logger;
+
+import org.openqa.selenium.Alert;
+import org.openqa.selenium.By;
+import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Keys;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
+import org.openqa.selenium.support.decorators.WebDriverDecorator;
+import org.testng.annotations.AfterTest;
+import org.testng.annotations.BeforeTest;
+import org.testng.annotations.Test;
+
+//import org.junit.Test;
+//import Helper.CommonMethod;
+import Program.base;
+
+
+
+	public class Login extends base  {
+		static Logger logger= Logger.getLogger(Login.class.getName());
+		public WebDriver driver;
+			
+	@BeforeTest
+	public void initialize() throws IOException {
+		driver=InitlializeDriver1();
+	    driver.manage().window().maximize();
+	    driver.manage().deleteAllCookies();
+	}
+	@Test
+	  public void login() throws InterruptedException, IOException  {
+		//created the base class and call the method here
+		Thread.sleep(2000);
+		    JavascriptExecutor js = (JavascriptExecutor) driver;
+			driver.get("https://www.shop-apotheke.com/nx/login/");
+			
+			Thread.sleep(4000);
+			//check on the number of frame in given page
+		    //JavascriptExecutor exe = (JavascriptExecutor) driver;
+			//Integer noOfFrames = Integer.parseInt(exe.executeScript("return window.length").toString());
+			//Integer numberOfFrames = 0;
+			//System.out.println("No. of iframes on the page are " + numberOfFrames);
+			String Str= "return document.querySelector('#usercentrics-root').shadowRoot.querySelector('#focus-lock-id > div > div > div.sc-bYoBSM.hrDdPG > div > div > div.sc-dlVxhl.bEDIID > div > button.sc-gsDKAQ.dZIwB')";
+			// String Str= "return document.querySelector(\'#usercentrics-root\').shadowRoot.querySelector(\'#focus-lock-id > div > div > div.sc-bYoBSM.hrDdPG > div > div > div.sc-dlVxhl.bEDIID > div > button.sc-gsDKAQ.eXTfct')";
+			WebElement title= (WebElement) js.executeScript(Str);
+			title.click();
+			/*Thread.sleep(2000);
+			String Str1= "return document.querySelector(\'#usercentrics-root\').shadowRoot.querySelector(\'#uc-center-container > div.sc-bYoBSM.zoUGP > div > div > div > button.sc-gsDKAQ.kdvnyC\')";
+			WebElement titl= (WebElement) js.executeScript(Str1);
+			titl.click();
+			Thread.sleep(2000);*/
+			//translate into english language
+			//scrolling down the page and looking for logout button
+			/*WebElement websitePage= driver.findElement(By.xpath("//*[@id='layout']"));
+			try {
+			Actions action = new Actions(driver);
+			action.moveToElement(websitePage);
+			action.contextClick().sendKeys(Keys.DOWN).perform();
+			Thread.sleep(3000);
+			}
+			catch(Exception e) {
+				System.out.println(e);
+			}*/
+			
+		    logger.info("registering for free/create user account for free");
+			/*driver.findElement(By.xpath("//*[@class='u-margin--bottom o-RegistrationBox__button-wrapper']")).click();
+			Thread.sleep(2000);
+			WebElement statutaionRadioButton=driver.findElement(By.xpath("(//*[@class='l-flex a-list-reset'])/li[1]"));//click on radio button
+			statutaionRadioButton.click();
+			WebElement Name=driver.findElement(By.xpath("//*[@id='firstName']"));//name
+			Name.sendKeys("Ankita");
+			WebElement LastName=driver.findElement(By.xpath("//*[@id='lastName']"));//last name
+			LastName.sendKeys("Bhardwaj");
+			WebElement emailAddress=driver.findElement(By.xpath("//*[@id='registerForm-eMail']"));// email address
+			emailAddress.sendKeys("ankitarattan@yahoo.com");
+			//js.executeScript("scroll(0,250)");
+			WebElement password=driver.findElement(By.xpath("//*[@id='registerForm-password']"));//password
+			password.sendKeys("Welcome@2022");
+			Thread.sleep(2000);
+			WebElement datedropdwon=driver.findElement(By.xpath("(//*[@class='m-Select__arrow u-transform-center--y'])[2]"));
+			datedropdwon.click();
+			Thread.sleep(2000);
+			js.executeScript("scroll(0,450)");
+			Thread.sleep(2000);
+			 String setDate=driver.findElement(By.xpath("//*[@class='m-Select__list']")).getText();
+			//setDate.getText();
+			 System.out.println(setDate);
+			 Thread.sleep(2000);
+			 driver.findElement(By.xpath("(//*[@class='m-Select__list'])[1]//*[text()=14]")).click();//set date birth
+			 Thread.sleep(2000);
+			 WebElement monthdwon1=driver.findElement(By.xpath("(//*[@class='m-Select__arrow u-transform-center--y'])[4]"));
+			 monthdwon1.click();
+			 Thread.sleep(2000);
+			 js.executeScript("scroll(0,450)");
+			 Thread.sleep(2000);
+			 String setMonth=driver.findElement(By.xpath("(//*[@class='m-Select__list'])[2]")).getText();
+			//setDate.getText();
+			 System.out.println(setMonth);
+			 Thread.sleep(2000);
+			 driver.findElement(By.xpath("(//*[@class='m-Select__list'])[2]//*[text()=06]")).click();//set month
+			 Thread.sleep(2000);
+			 WebElement yeardropdwon=driver.findElement(By.xpath("(//*[@class='m-Select__arrow u-transform-center--y'])[6]"));
+			 yeardropdwon.click();
+			 Thread.sleep(2000);
+			 js.executeScript("scroll(0,450)");
+			 Thread.sleep(2000);
+			 String setYear=driver.findElement(By.xpath("(//*[@class='m-Select__list'])[3]")).getText();
+				//setDate.getText();
+			 System.out.println(setYear);
+			 Thread.sleep(2000);
+			 driver.findElement(By.xpath("(//*[@class='m-Select__list'])[3]//*[text()=1989]")).click();//set date year
+			 Thread.sleep(3000);
+			 driver.findElement(By.xpath("(//*[@class='l-flex u-margin--bottom o-RegisterForm__checkbox-wrapper'])[2]")).click();//second checkbox clicked
+			 Thread.sleep(2000);
+			driver.findElement(By.xpath("//*[@id='register-submit-btn']")).click();//click to create a user account
+			Thread.sleep(4000);*/
+		  //open new tab with my mail accout
+		    //Actions openYahooMail = new Actions(driver);
+		    //openYahooMail.contextClick().sendKeys(Keys.ARROW_DOWN).sendKeys(Keys.ENTER).perform();
+		    //driver.switchTo().window("test");
+		    //driver.getWindowHandles();
+		    //open website in new tab 
+		   /* js.executeScript("window.open()");
+		    driver.manage().window().maximize();
+		    Thread.sleep(2000);
+		    ArrayList<String> tabs = new ArrayList<String>(driver.getWindowHandles());
+		    driver.switchTo().window(tabs.get(1));
+		    driver.get("http://yahoo.com");*/
+		   // driver.get("https://www.yahoo.com");
+		    //js.executeScript("window.open()");
+		    //Thread.sleep(2000);
+		    //driver.findElement(By.xpath("//*[@class='btn primary']")).click();
+		    //Thread.sleep(2000);
+		    //driver.findElement(By.xpath("//*[@id='ybarMailLink']")).click();
+		    //driver.
+		    
+		    //login with valid credentail
+		   /* WebElement Name=driver.findElement(By.xpath("//*[@id='loginForm-eMail']"));//name
+			Name.sendKeys("ankitarattan@yahoo.com");
+			WebElement LastName=driver.findElement(By.xpath("//*[@id='loginForm-password']"));//last name
+			LastName.sendKeys("Welcome@2022");
+			Thread.sleep(1000);
+			js.executeScript("scroll(0,600)");
+			driver.findElement(By.xpath("//*[@id='login-submit-btn']")).click();*/
+			//LastName.click();
+			//Actions open= new Actions(driver);
+			//open.click(LastName);
+			Thread.sleep(4000);
+			logger.info("successfully login");
+			
+			
+			
+			/*Actions builder =new Actions(driver);
+			builder.moveToElement(xpath("//*[@class='o-HeaderLarge--header__text u-font-weight--bold u-position--relative']")).perform();
+			WebElement loactor=(WebElement) By.xpath("//*[@class='a-Button']");
+			loactor.click();*/
+					
+			//driver.findElement(null)
+		//login with valid user	
+			
+			
+			//CommonMethod commonmethod= new CommonMethod(driver);
+			//commonmethod.lookForCareersAndQAJob().click();
+			//commonmethod.validation();
+			//commonmethod.applyNow();
+		}
+
+	
+
+	@AfterTest
+	public void close() {
+		//driver.quit();
+	  }
+
+}	*/
+	
+
