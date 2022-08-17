@@ -124,7 +124,7 @@ public class CommonMethod {
 		WebElement Name=driver.findElement(userName);//name
 		Name.sendKeys("ankitarattan1@yahoo.com");
 		WebElement LastName=driver.findElement(paswd);//last name
-		LastName.sendKeys("Welcome@2021");
+		LastName.sendKeys("Welcome@20");
 		Thread.sleep(1000);
 		js.executeScript("scroll(0,600)");
 		driver.findElement(loginSubmitButton).click();
